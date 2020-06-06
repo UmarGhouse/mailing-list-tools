@@ -3,3 +3,6 @@
 
 # Ignore the references folder
 /references
+
+# ignore all exports
+/exports
