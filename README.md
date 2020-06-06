@@ -33,7 +33,7 @@ If that doesn't work, you may need to install bundler first - to do so, run `gem
 
     **Do note that these tools are only equipped to manipulate files in the mail merge format which is exported from the [frontier-app](https://frontier-app.herokuapp.com/)**
     
-    It is advised that you use the `Export this mailing list for SendGrid` option when exporting a mailing list from the app
+    It is advised that you use the `Export this mailing list for SendGrid` option when exporting a mailing list from the app to be used with these tools (See the [Testing](#Testing) section below).
 
 4. Then run:
 
@@ -79,6 +79,10 @@ You can select the function you want by typing the number placed before each ite
 After running the function, the app will export the data to a CSV file in the `exports` folder. Then the app will automatically quit. 
 
 To run another manipulation, simply run the app again.
+
+An example of the app after it hass finished running if given below:
+
+![example usage](./example_usage.png)
 
 
 # Testing
