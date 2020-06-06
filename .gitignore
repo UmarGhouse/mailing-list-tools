@@ -1,0 +1,5 @@
+# Ignore all files inside the data file
+/data/*
+
+# Ignore the references folder
+/references
