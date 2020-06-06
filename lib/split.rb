@@ -16,10 +16,7 @@
 class Split
   def self.split
     # -------- Question to get type of file -------- #
-    puts "Make sure that all the files you wish to manipulate are in the 'data' folder
-    Do you want to check CSV (.csv) or Excel (.xlsx) files?"
-    
-    file_type = gets.chomp.downcase
+    file_type = Dialogue.select_file_type
     
     # -------- Get list of files -------- #
     # Array to hold all the file paths for each excel sheet

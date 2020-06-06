@@ -1,9 +1,9 @@
-require 'rubygems'
-require 'bundler/setup'
+['rubygems', 'bundler/setup'].each { |config| require config }
 Bundler.require(:default)
 
-Dir["./lib/*.rb"].each { |file| require file }
+Dir["./lib/*.rb"].each { |file| require file } # Require all the modules in the lib folder
 
+# List of all the functions this tool is capable of
 list_of_functions = [
   "Combine into a single mailing list",
   "Combine into a single column",
@@ -11,31 +11,14 @@ list_of_functions = [
   "Check differences between 2 mailing lists"
 ]
 
-split_data = Split.split
+split_data = Split.split # Split the data
 
-def select_function(list_of_functions)
-  puts "What would you like to do?"
-  list_of_functions.each_with_index do |function, index|
-    puts "[#{index}] #{function}"
-  end
-  
-  selected_function = gets.chomp.to_i
-end
+selected_function = Dialogue.select_function(list_of_functions) # Ask user what function they want to use
 
-selected_function = ''
+# Store the result of the module
+result = []
 
-while selected_function == ''
-  selected_function = select_function(list_of_functions)
-
-  if selected_function < list_of_functions.length
-    selected_function = list_of_functions[selected_function]
-  else
-    selected_function = ''
-  end
-end
-
-result = ''
-
+# Case statement to run the relevant module
 case selected_function
 when "Combine into a single mailing list"
   result = ['combined_mailing_list', Combine_to_mailing_list.combine(split_data)]
@@ -46,8 +29,8 @@ when "Check similarities between 2 mailing lists"
 when "Check differences between 2 mailing lists"
   result = ['difference_between_lists', Check_differences.check_difference(split_data)]
 else
-  puts "Invalid function"
+  puts "INVALID FUNCTION"
 end
 
-# puts result[1]
+# Write the output to a CSV file
 Write_to_csv.write_file(result[0], result[1])
