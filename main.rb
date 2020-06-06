@@ -5,7 +5,8 @@ Bundler.require(:default)
 Dir["./lib/*.rb"].each { |file| require file }
 
 list_of_functions = [
-  "Combine into a single mailing list"
+  "Combine into a single mailing list",
+  "Combine into a single column"
 ]
 
 split_data = Split.split
@@ -36,6 +37,8 @@ result = ''
 case selected_function
 when "Combine into a single mailing list"
   result = ['combined_mailing_list', Combine_to_mailing_list.combine(split_data)]
+when "Combine into a single column"
+  result = ['combined_to_column', Combine_to_single_column.combine(split_data)]
 else
   puts "Invalid function"
 end
