@@ -27,12 +27,16 @@ class Combine_to_mailing_list
             end
 
             # After the key has been created, add the emails to each array
-            if email_hash[:cc] != []
-              email_hash[:cc].each { |email| final_list[:"#{company_name}"][:cc] << email }
-            end
-
             if email_hash[:bcc] != []
               email_hash[:bcc].each { |email| final_list[:"#{company_name}"][:bcc] << email }
+            end
+            
+            if email_hash[:cc] != []
+              email_hash[:cc].each do |email| 
+                if !(final_list[:"#{company_name}"][:bcc].include?(email))
+                  final_list[:"#{company_name}"][:cc] << email
+                end
+              end
             end
           end
         end
@@ -45,7 +49,7 @@ class Combine_to_mailing_list
       email_hash[:bcc].uniq!
     end
 
-    export_string = "Company,To and Cc, BCc\n"
+    export_string = "Company,To and Cc,BCc\n"
 
     # Now we combine each item in final_list to a single string
     # so that it can be written to a csv
